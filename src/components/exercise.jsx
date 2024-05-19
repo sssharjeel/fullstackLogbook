@@ -1,4 +1,5 @@
 import { useState } from "react"
+import crud from "../../crud"
 
 const Exercise = ({name, entries}) => {
 
@@ -62,27 +63,27 @@ const Exercise = ({name, entries}) => {
         setNewReps(event.target.value)
     }
 
-    const handleEntryAdd = (event) => {
+    const addEntry = (event) => {
         event.preventDefault()
         const newEntry = {
             weight: newWeight,
             reps: newReps,
             date: new Date().toDateString()
         }
-
-        const newWorkoutArray = newWorkouts.concat(newEntry)
+        const response = crud.create(newEntry)
+        const newWorkoutArray = newWorkouts.concat(response)
         setNewWorkouts(newWorkoutArray)
-        setNewWeight('')
-        setNewReps('')
-
+        setTimeout(() => {
+            setNewReps("")
+            setNewWeight("")
+        }, 2000)
     }
-
 
 
     return (
         <>
         <h2>{name}</h2>
-        <form onSubmit={handleEntryAdd}>
+        <form onSubmit={addEntry}>
             <div> <label> weight: </label>
                 <input value={newWeight} onChange={handleWeight}></input></div>
             <br></br>
