@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3002/logbook'
+const baseUrl = 'http://localhost:3002/log'
 
 const getAll = () => {
   const request = axios.get(baseUrl)
@@ -11,13 +11,13 @@ const create = newObject => {
   return request.then(response => response.data)
 }
 
-const update = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject)
+const update = (name, newObject) => {
+  const request = axios.put(`${baseUrl}/${name}`, newObject)
   return request.then(response => response.data)
 }
 
-const remove  = (id) => {
-    const request = axios.delete(`${baseUrl}/${id}`)
+const remove  = (name) => {
+    const request = axios.delete(`${baseUrl}/${name}`)
     return request.then(console.log(`Deleted post with ID ${id}`))
 } 
 
