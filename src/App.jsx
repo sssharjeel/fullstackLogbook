@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Exercise from './components/exercise'
+import axios from 'axios'
 
 function App() {
 
@@ -18,6 +19,13 @@ function App() {
       entries: []
     }
   ]
+
+  useEffect(() => {
+    axios.get('http://localhost:3002/log')
+    .then(response => {
+      setExercises(response.data)
+    })
+  }, [])
 
   const [exercises, setExercises] = useState(log)
 
