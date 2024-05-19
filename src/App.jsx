@@ -4,30 +4,18 @@ import Exercise from './components/exercise'
 import axios from 'axios'
 
 function App() {
+  
+  const [exercises, setExercises] = useState([])
 
-  const log = [
-    {
-      name: "bench press",
-      entries: []
-    }, 
-    {
-      name: "chest supported t-bar row",  
-      entries: []
-    },
-    {
-      name: "overhead press",
-      entries: []
-    }
-  ]
 
   useEffect(() => {
     axios.get('http://localhost:3002/log')
     .then(response => {
       setExercises(response.data)
-    })
+    }) 
   }, [])
 
-  const [exercises, setExercises] = useState(log)
+
 
   return (
     <>
