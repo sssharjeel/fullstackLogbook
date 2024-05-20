@@ -63,22 +63,6 @@ const Exercise = ({name, entries}) => {
         setNewReps(event.target.value)
     }
 
-    const addEntry = (event) => {
-        event.preventDefault()
-        const newEntry = {
-            weight: newWeight,
-            reps: newReps,
-            date: new Date().toDateString()
-        }
-        const response = crud.create(newEntry)
-        const newWorkoutArray = newWorkouts.concat(response)
-        setNewWorkouts(newWorkoutArray)
-        setTimeout(() => {
-            setNewReps("")
-            setNewWeight("")
-        }, 2000)
-    }
-
 
     return (
         <>

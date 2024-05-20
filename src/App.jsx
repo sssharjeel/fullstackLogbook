@@ -4,8 +4,9 @@ import Exercise from './components/exercise'
 import axios from 'axios'
 
 function App() {
-  
+
   const [exercises, setExercises] = useState([])
+  const [exercise, setExercise] = useState('')
 
 
   useEffect(() => {
@@ -15,11 +16,43 @@ function App() {
     }) 
   }, [])
 
+  const handleExercise = (event) => {
+    event.preventDefault()
+    handleExercise(event.target.value)
+
+  }
+
+  const generateId = () => {
+    return (Math.random() * 10000000)
+  }
+
+
+  const addEntry = (event) => {
+    event.preventDefault()
+    const newExercise = {
+        id: Int(generateId()),
+        name: exercise,
+        entries:[]
+    }
+    const response = crud.create(newExercise)
+    newLog = exercises.concat(response.data)
+    setNewWorkouts(newLog)
+    setTimeout(() => {
+        setExercise("")
+    }, 2000)
+}
+
 
 
   return (
     <>
      <h1>welcome to your logbook</h1>
+     <form onSubmit={addEntry}>
+            <div> <label> exercise: </label>
+                <input value={exercise} onChange={handleExercise}></input></div>
+            <br></br>
+            <button type="submit">add exercise</button>
+        </form>
      {exercises.map((e)=> <Exercise name={e.name} entries={e.entries}></Exercise>)}
     </>
   )
