@@ -1,5 +1,4 @@
 import { useState } from "react"
-import crud from "../../crud"
 
 const Exercise = ({name, entries}) => {
 
@@ -67,7 +66,7 @@ const Exercise = ({name, entries}) => {
     return (
         <>
         <h2>{name}</h2>
-        <form onSubmit={addEntry}>
+        <form >
             <div> <label> weight: </label>
                 <input value={newWeight} onChange={handleWeight}></input></div>
             <br></br>

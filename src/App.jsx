@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Exercise from './components/exercise'
 import axios from 'axios'
+import crud from '../crud'
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
 
 
   useEffect(() => {
+
     axios.get('http://localhost:3002/log')
     .then(response => {
       setExercises(response.data)
@@ -17,32 +19,23 @@ function App() {
   }, [])
 
   const handleExercise = (event) => {
-    event.preventDefault()
-    handleExercise(event.target.value)
+    setExercise(event.target.value)
 
-  }
-
-  const generateId = () => {
-    return (Math.random() * 10000000)
   }
 
 
   const addEntry = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const newExercise = {
-        id: Int(generateId()),
         name: exercise,
-        entries:[]
+        entries: []
     }
     const response = crud.create(newExercise)
-    newLog = exercises.concat(response.data)
-    setNewWorkouts(newLog)
+    setExercises(exercises.concat(response))
     setTimeout(() => {
         setExercise("")
     }, 2000)
 }
-
-
 
   return (
     <>
