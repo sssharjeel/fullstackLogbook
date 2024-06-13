@@ -35,7 +35,21 @@ function App() {
     setTimeout(() => {
         setExercise("")
     }, 2000)
-}
+
+  }
+
+  const deleteExercise = id => {
+
+      crud.remove(id)
+
+      const updatedExercises = exercises.filter(function(exercise) {
+        return (exercise.id !== id)
+      })
+   
+      setExercises(updatedExercises)
+  
+  }
+
 
   return (
     <>
@@ -46,7 +60,12 @@ function App() {
             <br></br>
             <button type="submit">add exercise</button>
         </form>
-     {exercises.map((e)=> <Exercise name={e.name} entries={e.entries}></Exercise>)}
+        <>
+     {exercises.map((e)=> <><Exercise id={e.id} name={e.name} entries={e.entries}></Exercise>
+     <br></br>
+     <button onClick={() => deleteExercise(e.id)}>delete exercise</button></>)}
+     
+     </>
     </>
   )
 }
