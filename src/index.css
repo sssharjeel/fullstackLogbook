@@ -95,8 +95,12 @@ td:last-of-type {
   text-align: center;
 }
 
+tbody > tr {
+  background-color: #242424; 
+}
+
 tbody > tr:nth-of-type(even) {
-  background-color: rgb(237 238 242);
+  background-color: rgb(24,24,24);
 }
 
 @media (prefers-color-scheme: light) {
@@ -109,5 +113,11 @@ tbody > tr:nth-of-type(even) {
   }
   button {
     background-color: #f9f9f9;
+  }
+  tbody > tr {
+    background-color: #ffffff; /* Light background for all rows in light mode */
+  }
+  tbody > tr:nth-of-type(even) {
+    background-color: rgb(237, 238, 242); /* Light background for even rows in light mode */
   }
 }

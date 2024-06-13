@@ -21,5 +21,15 @@ const remove  = id => {
     return request.then(console.log(`Deleted post with ID ${id}`))
 } 
 
+const addE = (id, newObject) =>  {
+    const request = axios.post(`${baseUrl}/${id}/entries`, newObject)
+    return request.then(console.log('Added entry to exercise with ID ${id}'))
+}
 
-export default { getAll, create, update, remove }
+const removeE = (id, index) => {
+    const request = axios.delete(`${baseUrl}/${id}/entries/${index}`)
+    return request.then(console.log(`Deleted entry with index ${index} from post with ID ${id}`))
+}
+
+
+export default { getAll, create, update, remove, addE, removeE }

@@ -35,7 +35,6 @@ function App() {
     setTimeout(() => {
         setExercise("")
     }, 2000)
-
   }
 
   const deleteExercise = id => {
